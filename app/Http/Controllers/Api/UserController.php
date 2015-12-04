@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Controllers\ApiController as ApiController;
 use App\Domain\Repositories\UserRepository as UserRepository;
