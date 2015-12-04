@@ -2,7 +2,20 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-// Dotenv::load(__DIR__.'/../');
+/*
+|--------------------------------------------------------------------------
+| 检查 .env 文件
+|--------------------------------------------------------------------------
+| 根据 APP_ENV 的值加载对应的子配置文件
+|
+*/
+if (file_exists(__DIR__.'/../.env')) {
+    Dotenv::load(__DIR__.'/../');
+
+    if (getenv('APP_ENV') && file_exists(__DIR__.'/../.' .getenv('APP_ENV') .'.env')) {
+        Dotenv::load(__DIR__ . '/../', '.' . getenv('APP_ENV') . '.env');
+    }
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +32,7 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
 
-// $app->withFacades();
+$app->withFacades();
 
 // $app->withEloquent();
 

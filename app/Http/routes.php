@@ -11,6 +11,18 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->welcome();
+//$app->get('/', function () use ($app) {
+//    return $app->welcome();
+//});
+
+$app->group(['namespace' => 'App\Http\Controllers\Zt', 'prefix' => 'zt'], function($app) {
+    $app->get('/one', 'OneController@data_orm');
+    $app->get('/two', 'TwoController@hello');
 });
+
+$app->group(['namespace' => 'App\Http\Controllers\Api', 'prefix' => 'api'], function($app) {
+    $app->get('/user', 'UserController@getData');
+});
+
+$app->get('/hello', 'TestController@hello');
+$app->get('/data_orm', 'TestController@data_orm');
