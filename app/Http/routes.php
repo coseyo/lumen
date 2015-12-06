@@ -20,9 +20,12 @@ $app->group(['namespace' => 'App\Http\Controllers\Zt', 'prefix' => 'zt'], functi
     $app->get('/two', 'TwoController@hello');
 });
 
-$app->group(['namespace' => 'App\Http\Controllers\Api', 'prefix' => 'api'], function($app) {
+$app->group(['middleware' => 'login', 'namespace' => 'App\Http\Controllers\Api', 'prefix' => 'api'], function($app) {
     $app->get('/user', 'UserController@getData');
 });
 
-$app->get('/hello', 'TestController@hello');
+$app->get('/hello', [
+    'uses' => 'TestController@hello',
+//    'middleware' => App\Http\Middleware\LoginMiddleware::class,
+]);
 $app->get('/data_orm', 'TestController@data_orm');

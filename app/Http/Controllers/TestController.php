@@ -3,13 +3,23 @@
 namespace App\Http\Controllers;
 
 use DB;
+//use App\Http\Middleware\LoginMiddleware as LoginMiddleware;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 class TestController extends BaseController
 {
+
+    public function __construct()
+    {
+//        \App::bind('App\Http\Middleware\LoginMiddleware', 'App\Http\Middleware\LoginMiddleware');
+//        \App::alias('App\Http\Middleware\LoginMiddleware', 'login');
+        $this->middleware('login');
+//        $this->middleware('auth');
+    }
+
     public function hello()
     {
-        echo 'hello world lumenxx';
+        echo 'hello world lumenxxsdf';
     }
 
     public function data_orm()

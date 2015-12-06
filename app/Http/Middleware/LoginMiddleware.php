@@ -4,10 +4,16 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ExampleMiddleware
+class LoginMiddleware
 {
+
+    public function __construct()
+    {
+
+    }
+
     /**
-     * Handle an incoming request.
+     * Run the request filter.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -15,7 +21,9 @@ class ExampleMiddleware
      */
     public function handle($request, Closure $next)
     {
-//        echo 'hello';
+        echo 'here asdfadsf ';
+
         return $next($request);
     }
+
 }
