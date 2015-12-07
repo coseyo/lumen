@@ -4,7 +4,7 @@
 
     I am body <br/>
     @foreach ($arr as $row)
-        <p>This is row <%$row->sn%></p>
+        <p>This is row <%$row['sn']%></p>
     @endforeach
 
     <%$test%>

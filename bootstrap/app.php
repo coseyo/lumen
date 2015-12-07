@@ -57,6 +57,8 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+require __DIR__.'/providers.php';
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware

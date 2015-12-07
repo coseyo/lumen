@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Blade;
-use Laravel\Lumen\Routing\Controller as BaseController;
+use App\Http\Controllers\Controller;
 
-class ApiController extends BaseController
+class ApiController extends Controller
 {
-    public function __construct()
-    {
-    }
-
 }

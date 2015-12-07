@@ -22,6 +22,7 @@ $app->group(['namespace' => 'App\Http\Controllers\Zt', 'prefix' => 'zt'], functi
 
 $app->group(['middleware' => 'login', 'namespace' => 'App\Http\Controllers\Api', 'prefix' => 'api'], function($app) {
     $app->get('/user', 'UserController@getData');
+    $app->get('/user/{name:[\w]+}', 'UserController@service');
 });
 
 $app->get('/hello', [
