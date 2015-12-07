@@ -11,9 +11,9 @@
 |
 */
 
-//$app->get('/', function () use ($app) {
-//    return $app->welcome();
-//});
+$app->get('/', function () use ($app) {
+    return $app->welcome();
+});
 
 $app->group(['namespace' => 'App\Http\Controllers\Zt', 'prefix' => 'zt'], function($app) {
     $app->get('/one', 'OneController@data_orm');
