@@ -30,15 +30,46 @@ class Handler extends ExceptionHandler
         return parent::report($e);
     }
 
-    /**
+/**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
+     * @param \Illuminate\Http\Request $request
+     * @param Exception $e
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $e)
     {
+        if (!env('APP_DEBUG') and $this->isHttpException($e)) {
+            return $this->renderHttpException($e);
+        }
         return parent::render($request, $e);
+    }
+
+    /**
+     * Render the given HttpException.
+     *
+     * @param \Symfony\Component\HttpKernel\ExceptionHttpException $e
+     * @return \Symfony\Component\HttpFoundationResponse
+     */
+    protected function renderHttpException(HttpException $e)
+    {
+        $status = $e->getStatusCode();
+
+        if (view()->exists("errors.{$status}")) {
+            return response(view("errors.{$status}", []), $status);
+        } else {
+            return (new SymfonyExceptionHandler(env('APP_DEBUG', false)))->createResponse($e);
+        }
+    }
+
+    /**
+     * Determine if the given exception is an HTTP exception.
+     *
+     * @param Exception $e
+     * @return bool
+     */
+    protected function isHttpException(Exception $e)
+    {
+        return $e instanceof HttpException;
     }
 }
